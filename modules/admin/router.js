@@ -11,7 +11,7 @@ const { roles, canAccess } = require('../../middlewares/permission');
 router.post(
     '/',
     tokenParser,
-    canAccess([roles.manager]),
+    //canAccess([roles.manager]),
     //formDataParser('public/images'),
     validation.createAdmin,
     controller.createAdmin,
