@@ -3,7 +3,7 @@ const { validationResult, body } = require('express-validator');
 const { StatusCodes } = require('http-status-codes');
 const model = require('./model');
 require('../../utils/__send');
-const { createCarCategory, deleteCarCategory, createCarSpecifications, deleteCarSpecification, createCarFeature, createCarGearBox, deleteCarFeature, updateGearBox, updateCarFeature, updateCarCategory, getCarBrands } = require('./model');
+const { createCarCategory, deleteCarCategory, createCarSpecifications, deleteCarSpecification, createCarFeature, createCarGearBox, deleteCarFeature, updateGearBox, updateCarFeature, updateCarCategory, getCarBrands, getCarFeatures } = require('./model');
 
 module.exports = {
     async createCar(req, res, next) {
@@ -341,6 +341,21 @@ module.exports = {
             }
         }
     },
+    async getCarFeatures(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
+        } else {
+            try {
+
+                let filters = {};
+                let data = await model.getCarFeatures(filters);
+                res.__send(StatusCodes.OK, data);
+            } catch (err) {
+                next(err);
+            }
+        }
+    },
 
     async getCarCategories(req, res, next) {
 
@@ -373,6 +388,22 @@ module.exports = {
 
                 let filters = {};
                 let data = await model.getCar(filters);
+                res.__send(StatusCodes.OK, data);
+            } catch (err) {
+                next(err);
+            }
+        }
+    },
+
+    async getSpecification(req, res, next) {
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
+        } else {
+            try {
+                let filters = {};
+                let data = await model.getSpecification(filters);
                 res.__send(StatusCodes.OK, data);
             } catch (err) {
                 next(err);

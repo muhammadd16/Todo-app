@@ -11,13 +11,23 @@ module.exports = {
     async createBlog(req, res, next) {
 
         const errors = validationResult(req);
+        console.log(req);
+        console.log("cdvdvve");
+
+        console.log(errors);
+
+
         if (!errors.isEmpty()) {
             next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
         } else {
             try {
+                console.log(req);
+
                 await model.createBlog(req.body);
                 res.__send(StatusCodes.CREATED);
             } catch (err) {
+                console.log(err);
+
                 next(err);
             }
         }
@@ -141,6 +151,7 @@ module.exports = {
             next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
         } else {
             try {
+                console.log(req);
 
                 let limit = +req.query['limit'] || defaults.limit;
                 let offset = +req.query['offset'] || defaults.offset;
@@ -148,6 +159,9 @@ module.exports = {
                 let data = await model.getPages({ limit, offset }, filters);
                 res.__send(StatusCodes.OK, data);
             } catch (err) {
+                console.log(err);
+
+
                 next(err);
             }
         }

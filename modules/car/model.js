@@ -148,6 +148,12 @@ module.exports = {
         });
         return data;
     },
+    async getCarFeatures(filters = {}) {
+        const data = await Features.findAndCountAll({
+            where: { ...filters },
+        });
+        return data;
+    },
 
     async getCarCategories(filters = {}) {
         const data = await CarCategory.findAndCountAll({
@@ -191,6 +197,26 @@ module.exports = {
                 as: 'categories',
             },
 
+            ]
+        });
+
+        return data;
+    },
+
+    async getSpecification(filters = {}) {
+        const data = await Specification.findAndCountAll({
+            where: { ...filters },
+
+            include: [{
+                model: CarBrand,
+                as: 'brand',
+            },
+
+            {
+                model: CarFeature,
+                as: 'features',
+
+            },
             ]
         });
 

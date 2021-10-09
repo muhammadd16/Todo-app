@@ -80,6 +80,10 @@ router.delete('/brand/:id', tokenParser,
     canAccess([roles.manager, roles.carAdmin]),
     controller.deleteCarBrand);
 
+router.delete('/feature/:id', tokenParser,
+    canAccess([roles.manager, roles.carAdmin]),
+    controller.deleteCarFeature);
+
 router.delete('/specifications/:id', tokenParser,
     canAccess([roles.manager, roles.carAdmin]),
     controller.deleteCarSpecification);
@@ -137,6 +141,14 @@ router.get('/brands',
 router.get('/categories',
     // tokenParser,
     controller.getCarCategories);
+
+router.get('/features',
+    // tokenParser,
+    controller.getCarFeatures);
+
+router.get('/specifications',
+    // tokenParser,
+    controller.getSpecification);
 
 
 

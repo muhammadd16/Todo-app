@@ -1,9 +1,9 @@
 const express = require('express'),
 
     app = express()
-const Router = require('./router');
 const cors = require('cors');
 app.use(cors());
+const Router = require('./router');
 
 require('dotenv').config()
 
@@ -61,21 +61,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/', Router);
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization"
-    );
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-    next();
-});
+
 
 
 
