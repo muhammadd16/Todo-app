@@ -21,7 +21,7 @@ router.post(
     '/blog',
     tokenParser,
     canAccess([roles.manager, roles.BlogAdmin]),
-    //formDataParser('public/images'),
+    formDataParser('public/images'),
     controller.createBlog,
 );
 
