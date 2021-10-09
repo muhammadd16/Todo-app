@@ -402,6 +402,7 @@ module.exports = {
             next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
         } else {
             try {
+                console.log("d");
                 let filters = {};
                 let data = await model.getSpecification(filters);
                 res.__send(StatusCodes.OK, data);
