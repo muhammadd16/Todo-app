@@ -52,6 +52,7 @@ router.post(
     tokenParser,
     canAccess([roles.manager, roles.carAdmin]),
     controller.createCarSpecifications,
+
 );
 router.post(
     '/gear-box',
@@ -132,7 +133,8 @@ router.get('/',
 
 router.get('/gear-boxes',
     // tokenParser,
-    controller.getGearBoxes);
+    controller.getGearBoxes
+);
 
 router.get('/brands',
     // tokenParser,

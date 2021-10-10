@@ -18,6 +18,9 @@ const GearBox = sequelize.define('gear_box', {
 
 });
 
+//GearBox.hasMany(Specification, { foreignKey: 'gear_type_id', as: "gear_box" });
+
+
 
 /*GearBox.sync({ force: true })
     .then((_) => {

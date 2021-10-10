@@ -58,6 +58,7 @@ module.exports = {
         } else {
             try {
                 await model.createCarSpecifications(req.body);
+                // res.__send(StatusCodes.CREATED);
                 res.__send(StatusCodes.CREATED);
             } catch (err) {
                 next(err);

@@ -58,7 +58,11 @@ Specification.belongsTo(Features, {
     foreignKey: 'feature_id',
     as: 'features',
 });
-Specification.hasMany(GearBox, { foreignKey: 'gear_type_id', as: "gear_box" });
+Specification.belongsTo(GearBox, {
+    foreignKey: 'gear_type_id',
+    as: 'gear_box',
+});
+//Specification.hasMany(GearBox, { foreignKey: 'gear_type_id', as: "gear_box" });
 
 
 /*Specification.sync({ force: true })
