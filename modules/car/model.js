@@ -178,6 +178,11 @@ module.exports = {
                         model: Features,
                         as: 'features',
                     },
+                    {
+                        model: GearBox,
+                        as: 'gear_box',
+
+                    }
 
                 ],
 

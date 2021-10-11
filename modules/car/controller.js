@@ -30,6 +30,9 @@ module.exports = {
         } else {
             try {
 
+                req.body.icon = req.body.icon.replace('undefined', 'http://car-gallery684456.herokuapp.com');
+                console.log(req.body);
+
                 await model.createCarCategory(req.body);
                 res.__send(StatusCodes.CREATED);
             } catch (err) {
@@ -97,7 +100,7 @@ module.exports = {
             next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Input Error', errors.array()));
         } else {
             try {
-                await model.creat(req.body);
+                await model.createCarImages(req.body);
                 res.__send(StatusCodes.CREATED);
             } catch (err) {
                 next(err);
