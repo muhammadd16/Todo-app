@@ -92,7 +92,7 @@ router.delete('/specifications/:id', tokenParser,
 router.get('/all', controller.getAllInfo);
 
 router.put(
-    '/', tokenParser,
+    '/:id', tokenParser,
     canAccess([roles.manager, roles.carAdmin]),
     formDataParser('public/images'),
     controller.updateCar,
