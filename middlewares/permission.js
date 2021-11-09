@@ -2,10 +2,9 @@ const { ErrorHandler } = require('../utils/error');
 const { StatusCodes } = require('http-status-codes');
 
 const roles = {
-    carAdmin: 'CAR_ADMIN',
-    BlogAdmin: 'BLOG_ADMIN',
-    manager: 'MANAGER',
-
+    Admin: 'Admin',
+    User: 'User',
+    Manager: 'Manager'
 };
 
 const canAccess =

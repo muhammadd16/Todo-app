@@ -1,6 +1,6 @@
 
 const Admin = require('../../models/admin');
-
+const User = require('../../models/user');
 
 module.exports = {
     async findByEmail(email) {
@@ -11,14 +11,17 @@ module.exports = {
         });
         if (user) {
             user = user.dataValues;
-
+        }
+        else
+        {
+            user = await user.findOne({
+                where: { email },
+            });
+        }
+        if (user) {
+            user = user.dataValues;
         }
         return user;
     },
-    async updatePassword(email, password) {
-
-        await Admin.update({ password }, { where: { email } });
-
-    },
-
+    
 };

@@ -1,47 +1,19 @@
 const express = require('express'),
-
-    app = express()
+app = express()
 const cors = require('cors');
 app.use(cors());
 const Router = require('./router');
-
 require('dotenv').config()
-
 const morgan = require('morgan');
-var seo = require('express-seo')(app);
-seo.setConfig({
-    langs: ["en", "fr"]
-});
-
-
 app.use(morgan('dev'));
 app.use(express.json());
-
-
 const db = require('./services/sequelize');
-require('./models/admin');
-require('./models/bookin');
-require('./models/blog');
-require('./models/page');
-require('./models/car-images');
-require('./models/carCategory');
-//require('./models/specification');
-
 const __send = require('./utils/__send');
-const sftp = require('ssh2-sftp-client');
 const { HTTP_VERSION_NOT_SUPPORTED } = require('http-status-codes');
-
 app.use(__send);
-
-const path = require('path');
-
-app.use('/public', express.static(path.join(__dirname, '/public')));
-
 
 
 var http = require('http');
-
-
 
 db.sequelize
     .authenticate()
@@ -61,11 +33,6 @@ app.get('/', (req, res) => {
 
 
 app.use('/', Router);
-
-
-
-
-
 
 
 

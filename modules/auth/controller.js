@@ -21,35 +21,5 @@ module.exports = {
             next(err);
         }
     },
-    async resetPassword(req, res, next) {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            next(new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Validation Error', errors.array()));
-        }
-        try {
-            let token = req.body.token;
-            jwt.verify(token, process.env.TOKEN_SECRET, async (err, data) => {
-                if (err) {
-                    next(
-                        new ErrorHandler(StatusCodes.NOT_ACCEPTABLE, 'Validation Error', [
-                            'Token Expired',
-                        ]),
-                    );
-                } else {
-                    let password = req.body.password;
-                    let email = data.email;
-                    let user = await AuthModel.findByEmail(email);
-                    if (!user) {
-                        throw new ErrorHandler(StatusCodes.NOT_FOUND, 'Validation Error');
-                    }
-                    await AuthModel.updatePassword(email, password);
-                    res.__send(StatusCodes.OK);
-                }
-            });
-        } catch (err) {
-            next(err);
-        }
-    },
-
-
+   
 };
